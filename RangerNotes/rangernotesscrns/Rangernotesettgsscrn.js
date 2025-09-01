@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Linking,
   ImageBackground as RangerNotesBackground,
   ScrollView,
   StyleSheet,
@@ -8,14 +9,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { useRangerNotesStore } from '../rangernotesstr/rangercntx';
 import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
 
 const { width } = Dimensions.get('window');
 
 const Rangernotesettgsscrn = () => {
-  const nav = useNavigation();
   const {
     setIsEnbldRangerNotesNotf,
     isEnbldRangerNotesNotf,
@@ -154,8 +153,15 @@ const Rangernotesettgsscrn = () => {
                 </TouchableOpacity>
               </View>
 
-              <View style={{ alignSelf: 'center' }}>
-                <TouchableOpacity>
+              <View style={{ alignSelf: 'center', marginTop: 5 }}>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() =>
+                    Linking.openURL(
+                      'https://www.termsfeed.com/live/97903642-7812-4451-bf04-d39415ee7d68',
+                    )
+                  }
+                >
                   <Text style={styles.rangernotestermstxt}>Terms of Use</Text>
                 </TouchableOpacity>
               </View>
