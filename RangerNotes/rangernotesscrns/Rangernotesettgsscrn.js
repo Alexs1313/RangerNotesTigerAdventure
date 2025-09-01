@@ -10,13 +10,20 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useRangerNotesStore } from '../rangernotesstr/rangercntx';
+import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
 
 const { width } = Dimensions.get('window');
 
 const Rangernotesettgsscrn = () => {
   const nav = useNavigation();
-  const { setIsEnbldRangerNotesNotf, isEnbldRangerNotesNotf } =
-    useRangerNotesStore();
+  const {
+    setIsEnbldRangerNotesNotf,
+    isEnbldRangerNotesNotf,
+    isEnbldRangerNotesSnd,
+    setIsEnbldRangerNotesSnd,
+    isEnbldRangerNotesMsc,
+    setIsEnbldRangerNotesMsc,
+  } = useRangerNotesStore();
 
   return (
     <RangerNotesBackground
@@ -26,11 +33,7 @@ const Rangernotesettgsscrn = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.rangercontainer}>
           <View style={styles.rangerheader}>
-            <TouchableOpacity onPress={() => nav.goBack()} activeOpacity={0.6}>
-              <Image
-                source={require('../../assets/images/rangerbackbtn.png')}
-              />
-            </TouchableOpacity>
+            <Rangernotesbckbtn />
             <Text style={styles.rangerttl}>Settings</Text>
           </View>
 
@@ -44,6 +47,77 @@ const Rangernotesettgsscrn = () => {
                 paddingTop: 25,
               }}
             >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text style={[styles.rangerttl, { fontSize: 24 }]}>Music</Text>
+                <TouchableOpacity
+                  style={{ justifyContent: 'center' }}
+                  onPress={() =>
+                    setIsEnbldRangerNotesMsc(!isEnbldRangerNotesMsc)
+                  }
+                >
+                  {isEnbldRangerNotesMsc ? (
+                    <Image
+                      source={require('../../assets/images/rangernotesonbtn.png')}
+                      style={{ width: 84, height: 41 }}
+                    />
+                  ) : (
+                    <Image
+                      source={require('../../assets/images/rangernotesoffbtn.png')}
+                      style={{ width: 84, height: 41 }}
+                    />
+                  )}
+                  <Text
+                    style={[
+                      styles.rangerttl,
+                      { fontSize: 20, position: 'absolute', left: 21 },
+                      isEnbldRangerNotesMsc && { left: 25 },
+                    ]}
+                  >
+                    {isEnbldRangerNotesMsc ? 'ON' : 'OFF'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text style={[styles.rangerttl, { fontSize: 24 }]}>Sound</Text>
+                <TouchableOpacity
+                  style={{ justifyContent: 'center' }}
+                  onPress={() =>
+                    setIsEnbldRangerNotesSnd(!isEnbldRangerNotesSnd)
+                  }
+                >
+                  {isEnbldRangerNotesSnd ? (
+                    <Image
+                      source={require('../../assets/images/rangernotesonbtn.png')}
+                      style={{ width: 84, height: 41 }}
+                    />
+                  ) : (
+                    <Image
+                      source={require('../../assets/images/rangernotesoffbtn.png')}
+                      style={{ width: 84, height: 41 }}
+                    />
+                  )}
+                  <Text
+                    style={[
+                      styles.rangerttl,
+                      { fontSize: 20, position: 'absolute', left: 21 },
+                      isEnbldRangerNotesSnd && { left: 25 },
+                    ]}
+                  >
+                    {isEnbldRangerNotesSnd ? 'ON' : 'OFF'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
               <View
                 style={{
                   flexDirection: 'row',
@@ -98,7 +172,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Bold',
     color: '#fff',
     fontSize: 32,
-    marginVertical: 26,
+    marginVertical: 16,
   },
   rangercontainer: { padding: 24, paddingTop: 60, paddingBottom: 34 },
   rangerheader: {

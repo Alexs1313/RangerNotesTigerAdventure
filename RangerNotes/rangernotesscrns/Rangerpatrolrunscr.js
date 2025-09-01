@@ -18,6 +18,7 @@ import Rangerbtn from '../rangernotescmps/Rangerbtn';
 import { BlurView } from '@react-native-community/blur';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import Orientation from 'react-native-orientation-locker';
+import SoundPlayer from 'react-native-sound-player';
 
 const { width, height } = Dimensions.get('window');
 
@@ -71,6 +72,7 @@ export default function Rangerpatrolrunscr({ route }) {
     loadProgress,
     rangerOutputsTigers,
     rangerOutputsBgc,
+    isEnbldRangerNotesMsc,
   } = useRangerNotesStore();
   const [task, setTask] = useState({ ...rangerNotesLvls[0] });
   const selRangerNotesLvl = route.params;
@@ -92,6 +94,25 @@ export default function Rangerpatrolrunscr({ route }) {
     loadProgress();
     startLevel(selRangerNotesLvl);
     getRangerOutpost('rangerBgc'), getRangerOutpost('rangerOutpost');
+  }, []);
+
+  useEffect(() => {
+    if (isEnbldRangerNotesMsc)
+      try {
+        SoundPlayer.playSoundFile('piano_keys', 'wav');
+
+        SoundPlayer.setNumberOfLoops(-1);
+      } catch (e) {
+        console.log('e', e);
+      }
+
+    return () => {
+      try {
+        SoundPlayer.stop();
+      } catch (e) {
+        console.log('e', e);
+      }
+    };
   }, []);
 
   useFocusEffect(

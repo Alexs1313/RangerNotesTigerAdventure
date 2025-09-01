@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useRangerNotesStore } from '../rangernotesstr/rangercntx';
+import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
 
 const { width } = Dimensions.get('window');
 
@@ -33,11 +34,7 @@ const Rangernoteslvsl = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.rangercontainer}>
           <View style={styles.rangerheader}>
-            <TouchableOpacity onPress={() => nav.goBack()} activeOpacity={0.6}>
-              <Image
-                source={require('../../assets/images/rangerbackbtn.png')}
-              />
-            </TouchableOpacity>
+            <Rangernotesbckbtn />
             <Text style={styles.rangerttl}>Levels</Text>
           </View>
 

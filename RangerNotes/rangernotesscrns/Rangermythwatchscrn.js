@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
 
 const { width, height } = Dimensions.get('window');
 
@@ -24,11 +25,7 @@ const Rangermythwatchscrn = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.rangercontainer}>
           <View style={styles.rangerheader}>
-            <TouchableOpacity onPress={() => nav.goBack()} activeOpacity={0.6}>
-              <Image
-                source={require('../../assets/images/rangerbackbtn.png')}
-              />
-            </TouchableOpacity>
+            <Rangernotesbckbtn />
             <Text style={styles.rangerttl}>Myth Watch</Text>
           </View>
 

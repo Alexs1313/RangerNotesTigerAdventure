@@ -16,6 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
 
 const { width } = Dimensions.get('window');
 
@@ -149,14 +150,7 @@ const Rangeroutpstscrn = () => {
                 gap: width * 0.05,
               }}
             >
-              <TouchableOpacity
-                onPress={() => nav.goBack()}
-                activeOpacity={0.6}
-              >
-                <Image
-                  source={require('../../assets/images/rangerbackbtn.png')}
-                />
-              </TouchableOpacity>
+              <Rangernotesbckbtn />
               <Text style={styles.rangerttl}>Outpost</Text>
             </View>
 

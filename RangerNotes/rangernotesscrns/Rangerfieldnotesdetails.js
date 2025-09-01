@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import {
   Image,
   ImageBackground,
@@ -9,10 +8,13 @@ import {
   TouchableOpacity,
   Share,
 } from 'react-native';
+import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
+import { useRangerNotesStore } from '../rangernotesstr/rangercntx';
+import SoundPlayer from 'react-native-sound-player';
 
 const Rangerfieldnotesdetails = ({ route }) => {
-  const nav = useNavigation();
   const rangerArtItem = route.params;
+  const { isEnbldRangerNotesSnd } = useRangerNotesStore();
 
   const rangerArtNoteShr = async () => {
     try {
@@ -26,6 +28,14 @@ ${rangerArtItem.rangernotesscrn}
     }
   };
 
+  const rangerNotesSnd = () => {
+    try {
+      SoundPlayer.playSoundFile('correct_beep', 'wav');
+    } catch (e) {
+      console.log('cannot play the sound file', e);
+    }
+  };
+
   return (
     <ImageBackground
       source={require('../../assets/images/rangersecbg.png')}
@@ -34,13 +44,17 @@ ${rangerArtItem.rangernotesscrn}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.rangercontainer}>
           <View style={styles.rangerheader}>
-            <TouchableOpacity onPress={() => nav.goBack()} activeOpacity={0.6}>
-              <Image
-                source={require('../../assets/images/rangerbackbtn.png')}
-              />
-            </TouchableOpacity>
+            <Rangernotesbckbtn />
 
-            <TouchableOpacity onPress={rangerArtNoteShr} activeOpacity={0.6}>
+            <TouchableOpacity
+              onPress={() => {
+                rangerArtNoteShr();
+                if (isEnbldRangerNotesSnd) {
+                  rangerNotesSnd();
+                }
+              }}
+              activeOpacity={0.6}
+            >
               <Image source={require('../../assets/images/rangershrbtn.png')} />
             </TouchableOpacity>
           </View>

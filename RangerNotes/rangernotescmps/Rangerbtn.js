@@ -7,6 +7,8 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+import SoundPlayer from 'react-native-sound-player';
+import { useRangerNotesStore } from '../rangernotesstr/rangercntx';
 
 const { width } = Dimensions.get('window');
 
@@ -21,9 +23,24 @@ const Rangerbtn = ({
   rangerPropsLockIcon,
   isDisabled,
 }) => {
+  const { isEnbldRangerNotesSnd } = useRangerNotesStore();
+
+  const rangerNotesSnd = () => {
+    try {
+      SoundPlayer.playSoundFile('correct_beep', 'wav');
+    } catch (e) {
+      console.log('cannot play the sound file', e);
+    }
+  };
+
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={() => {
+        onPress();
+        if (isEnbldRangerNotesSnd) {
+          rangerNotesSnd();
+        }
+      }}
       activeOpacity={0.8}
       style={styles.rangernotesbtnctn}
       disabled={isDisabled}

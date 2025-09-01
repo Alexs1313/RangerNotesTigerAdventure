@@ -11,6 +11,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import Rangernotesbckbtn from '../rangernotescmps/Rangernotesbckbtn';
 
 const { width } = Dimensions.get('window');
 
@@ -25,11 +26,7 @@ const Rangerfieldnotesscrn = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.rangercontainer}>
           <View style={styles.rangerheader}>
-            <TouchableOpacity onPress={() => nav.goBack()} activeOpacity={0.6}>
-              <Image
-                source={require('../../assets/images/rangerbackbtn.png')}
-              />
-            </TouchableOpacity>
+            <Rangernotesbckbtn />
             <Text style={styles.rangerttl}>Field Notes</Text>
           </View>
 

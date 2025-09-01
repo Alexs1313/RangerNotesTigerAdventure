@@ -93,6 +93,8 @@ export const RangerNotesContextProvider = ({ children }) => {
   const [rangerNotesLvl, setRangerNotesLvl] = useState(0);
   const [coinsStore, setCoinsStore] = useState(0);
   const [isEnbldRangerNotesNotf, setIsEnbldRangerNotesNotf] = useState(false);
+  const [isEnbldRangerNotesSnd, setIsEnbldRangerNotesSnd] = useState(false);
+  const [isEnbldRangerNotesMsc, setIsEnbldRangerNotesMsc] = useState(false);
 
   const loadProgress = async () => {
     try {
@@ -148,6 +150,10 @@ export const RangerNotesContextProvider = ({ children }) => {
     saveRangerOutpost,
     isEnbldRangerNotesNotf,
     setIsEnbldRangerNotesNotf,
+    isEnbldRangerNotesSnd,
+    setIsEnbldRangerNotesSnd,
+    isEnbldRangerNotesMsc,
+    setIsEnbldRangerNotesMsc,
   };
 
   return (
